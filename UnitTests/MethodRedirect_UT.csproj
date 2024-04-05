@@ -80,11 +80,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenario1.cs" />
     <Compile Include="Scenario1_UnitTests.cs" />
+    <Compile Include="Scenario2.cs" />
     <Compile Include="Scenario2_UnitTests.cs" />
+    <Compile Include="Scenario3.cs" />
     <Compile Include="Scenario3_UnitTests.cs" />
+    <Compile Include="Scenario4.cs" />
     <Compile Include="Scenario4_UnitTests.cs" />
+    <Compile Include="Scenario5.cs" />
     <Compile Include="Scenario5_UnitTests.cs" />
+    <Compile Include="Scenario6.cs" />
     <Compile Include="Scenario6_UnitTests.cs" />
   </ItemGroup>
   <ItemGroup>

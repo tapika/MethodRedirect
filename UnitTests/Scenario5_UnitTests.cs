@@ -13,7 +13,7 @@ namespace Scenarios_UT
         {
             Type Scenario_Type = typeof(Scenario5);
             Assembly assembly = Assembly.GetAssembly(typeof(Scenario5));
-            Type ScenarioBase_Type = assembly.GetType("MethodRedirect.Scenario5Base");
+            Type ScenarioBase_Type = assembly.GetType("Scenarios_UT.Scenario5Base");
 
             PropertyInfo ScenarioBase_MinimumFeeProperty = ScenarioBase_Type.GetProperty("MinimumFee", BindingFlags.Instance | BindingFlags.NonPublic);
 

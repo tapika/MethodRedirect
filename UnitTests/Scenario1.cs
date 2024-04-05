@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MethodRedirect;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace MethodRedirect
+namespace Scenarios_UT
 {
     class Scenario1
     {
@@ -30,11 +31,11 @@ namespace MethodRedirect
 
             string methodName = scenario.InternalInstanceMethod();
 
-            //Console.WriteLine("Call MethodRedirect.Scenario1.InternalInstanceMethod => {0}", methodName);
+            //Console.WriteLine("Call Scenarios_UT.Scenario1.InternalInstanceMethod => {0}", methodName);
 
-            //Debug.Assert(methodName == "MethodRedirect.Scenario1.PrivateInstanceMethod");
+            //Debug.Assert(methodName == "Scenarios_UT.Scenario1.PrivateInstanceMethod");
 
-            if (methodName == "MethodRedirect.Scenario1.PrivateInstanceMethod")
+            if (methodName == "Scenarios_UT.Scenario1.PrivateInstanceMethod")
             {
                 //Console.WriteLine("\nRestore...");
                 
@@ -44,11 +45,11 @@ namespace MethodRedirect
 
                 methodName = scenario.InternalInstanceMethod();
 
-                //Console.WriteLine("Call MethodRedirect.Scenario1.InternalInstanceMethod => {0}", methodName);
+                //Console.WriteLine("Call Scenarios_UT.Scenario1.InternalInstanceMethod => {0}", methodName);
 
-                //Debug.Assert(methodName == "MethodRedirect.Scenario1.InternalInstanceMethod");
+                //Debug.Assert(methodName == "Scenarios_UT.Scenario1.InternalInstanceMethod");
 
-                if (methodName == "MethodRedirect.Scenario1.InternalInstanceMethod")
+                if (methodName == "Scenarios_UT.Scenario1.InternalInstanceMethod")
                 {
                     Console.WriteLine("\nSUCCESS!");
                 }
@@ -67,22 +68,22 @@ namespace MethodRedirect
         
         internal string InternalInstanceMethod()
         {
-            return "MethodRedirect.Scenario1.InternalInstanceMethod";
+            return "Scenarios_UT.Scenario1.InternalInstanceMethod";
         }
         
         private string PrivateInstanceMethod()
         {
-            return "MethodRedirect.Scenario1.PrivateInstanceMethod";
+            return "Scenarios_UT.Scenario1.PrivateInstanceMethod";
         }
 
         public string PublicInstanceMethod()
         {
-            return "MethodRedirect.Scenario1.PublicInstanceMethod";
+            return "Scenarios_UT.Scenario1.PublicInstanceMethod";
         }
 
         public static string PublicStaticMethod()
         {
-            return "MethodRedirect.Scenario1.PublicStaticMethod";
+            return "Scenarios_UT.Scenario1.PublicStaticMethod";
         }
     }
 }

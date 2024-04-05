@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MethodRedirect
+namespace Scenarios_UT
 {
     class Scenario3
     {
@@ -11,7 +11,7 @@ namespace MethodRedirect
 
         internal virtual string InternalVirtualInstanceMethod()
         {
-            return "MethodRedirect.Scenario3.InternalVirtualInstanceMethod";
+            return "Scenarios_UT.Scenario3.InternalVirtualInstanceMethod";
         }
     }
 
@@ -19,7 +19,7 @@ namespace MethodRedirect
     {
         internal static string InternalStaticMethod()
         {
-            return "MethodRedirect.Scenario3Ext.InternalStaticMethod";
+            return "Scenarios_UT.Scenario3Ext.InternalStaticMethod";
         }
     }
 }

@@ -23,13 +23,13 @@ namespace Scenarios_UT
                        
             string methodName = scenario.InternalInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario1.PrivateInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario1.PrivateInstanceMethod");
 
             token.Restore();
 
             methodName = scenario.InternalInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario1.InternalInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario1.InternalInstanceMethod");
         }
 
         [TestMethod]
@@ -47,13 +47,13 @@ namespace Scenarios_UT
 
             string methodName = scenario.PublicInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario1.PrivateInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario1.PrivateInstanceMethod");
 
             token.Restore();
 
             methodName = scenario.PublicInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario1.PublicInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario1.PublicInstanceMethod");
         }
 
         [TestMethod]
@@ -71,13 +71,13 @@ namespace Scenarios_UT
 
             string methodName = scenario.PublicInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario1.PublicStaticMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario1.PublicStaticMethod");
 
             token.Restore();
 
             methodName = scenario.PublicInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario1.PublicInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario1.PublicInstanceMethod");
         }
     }
 }

@@ -1,15 +1,16 @@
-﻿using System;
+﻿using MethodRedirect;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace MethodRedirect
+namespace Scenarios_UT
 {
     class Scenario2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Redirect : MethodRedirect.Scenario2.InternalVirtualInstanceMethod()");
-            Console.WriteLine("To       : MethodRedirect.Scenario2.PrivateInstanceMethod()");            
+            Console.WriteLine("Redirect : Scenarios_UT.Scenario2.InternalVirtualInstanceMethod()");
+            Console.WriteLine("To       : Scenarios_UT.Scenario2.PrivateInstanceMethod()");            
 
             Type Scenario_Type = typeof(Scenario2);
 
@@ -22,11 +23,11 @@ namespace MethodRedirect
 
             string methodName = scenario.InternalVirtualInstanceMethod();
 
-            Console.WriteLine("Call MethodRedirect.Scenario2.InternalVirtualInstanceMethod => {0}", methodName);
+            Console.WriteLine("Call Scenarios_UT.Scenario2.InternalVirtualInstanceMethod => {0}", methodName);
 
-            Debug.Assert(methodName == "MethodRedirect.Scenario2.PrivateInstanceMethod");
+            Debug.Assert(methodName == "Scenarios_UT.Scenario2.PrivateInstanceMethod");
 
-            if (methodName == "MethodRedirect.Scenario2.PrivateInstanceMethod")
+            if (methodName == "Scenarios_UT.Scenario2.PrivateInstanceMethod")
             {
                 Console.WriteLine("\nRestore...");
 
@@ -34,11 +35,11 @@ namespace MethodRedirect
 
                 methodName = scenario.InternalVirtualInstanceMethod();
 
-                Console.WriteLine("Call MethodRedirect.Scenario2.InternalVirtualInstanceMethod => {0}", methodName);
+                Console.WriteLine("Call Scenarios_UT.Scenario2.InternalVirtualInstanceMethod => {0}", methodName);
 
-                Debug.Assert(methodName == "MethodRedirect.Scenario2.InternalVirtualInstanceMethod");
+                Debug.Assert(methodName == "Scenarios_UT.Scenario2.InternalVirtualInstanceMethod");
 
-                if (methodName == "MethodRedirect.Scenario2.InternalVirtualInstanceMethod")
+                if (methodName == "Scenarios_UT.Scenario2.InternalVirtualInstanceMethod")
                 {
                     Console.WriteLine("\nSUCCESS!");
                 }
@@ -57,17 +58,17 @@ namespace MethodRedirect
 
         internal virtual string AnotherInternalVirtualInstanceMethod()
         {
-            return "MethodRedirect.Scenario2.AnotherInternalVirtualInstanceMethod";
+            return "Scenarios_UT.Scenario2.AnotherInternalVirtualInstanceMethod";
         }
 
         internal virtual string InternalVirtualInstanceMethod()
         {
-            return "MethodRedirect.Scenario2.InternalVirtualInstanceMethod";
+            return "Scenarios_UT.Scenario2.InternalVirtualInstanceMethod";
         }
 
         private string PrivateInstanceMethod()
         {
-            return "MethodRedirect.Scenario2.PrivateInstanceMethod";
+            return "Scenarios_UT.Scenario2.PrivateInstanceMethod";
         }
     }
 }

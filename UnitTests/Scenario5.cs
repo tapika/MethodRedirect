@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MethodRedirect
+namespace Scenarios_UT
 {
     class Scenario5: Scenario5Base
     {

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2A84DC12-471E-492F-B390-DF3ADB452E28}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>MethodRedirect</RootNamespace>
     <AssemblyName>MethodRedirect</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -34,7 +34,8 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>MethodRedirect.Scenario1</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,12 +93,6 @@
     <Compile Include="OriginalMethodsInfo.cs" />
     <Compile Include="MethodToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenario6.cs" />
-    <Compile Include="Scenario5.cs" />
-    <Compile Include="Scenario4.cs" />
-    <Compile Include="Scenario3.cs" />
-    <Compile Include="Scenario2.cs" />
-    <Compile Include="Scenario1.cs" />
     <Compile Include="MethodUtil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

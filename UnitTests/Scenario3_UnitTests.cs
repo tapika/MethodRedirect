@@ -22,13 +22,13 @@ namespace Scenarios_UT
                        
             string methodName = scenario.InternalVirtualInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario3Ext.InternalStaticMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario3Ext.InternalStaticMethod");
 
             token.Restore();
 
             methodName = scenario.InternalVirtualInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario3.InternalVirtualInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario3.InternalVirtualInstanceMethod");
         }
     }
 }

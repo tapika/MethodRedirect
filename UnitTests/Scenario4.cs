@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MethodRedirect
+namespace Scenarios_UT
 {
     class Scenario4
     {
@@ -11,7 +11,7 @@ namespace MethodRedirect
 
         public virtual string PublicVirtualInstanceMethod()
         {
-            return "MethodRedirect.Scenario4.PublicVirtualInstanceMethod";
+            return "Scenarios_UT.Scenario4.PublicVirtualInstanceMethod";
         }
     }
 
@@ -19,7 +19,7 @@ namespace MethodRedirect
     {
         private string PrivateInstanceMethod()
         {
-            return "MethodRedirect.Scenario4Ext.PrivateInstanceMethod";
+            return "Scenarios_UT.Scenario4Ext.PrivateInstanceMethod";
         }
     }
 }

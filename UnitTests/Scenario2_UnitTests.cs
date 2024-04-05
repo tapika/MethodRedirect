@@ -22,13 +22,13 @@ namespace Scenarios_UT
                        
             string methodName = scenario.InternalVirtualInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario2.PrivateInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario2.PrivateInstanceMethod");
 
             token.Restore();
 
             methodName = scenario.InternalVirtualInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario2.InternalVirtualInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario2.InternalVirtualInstanceMethod");
         }
     }
 }

@@ -24,13 +24,13 @@ namespace Scenarios_UT
             int parameter = 123;
             string methodName = scenario.PublicVirtualInstanceMethodWithParameter(parameter);
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario6Ext.PrivateInstanceMethodWithParameter." + parameter);
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario6Ext.PrivateInstanceMethodWithParameter." + parameter);
 
             token.Restore();
 
             methodName = scenario.PublicVirtualInstanceMethodWithParameter(parameter);
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario6.PublicVirtualInstanceMethodWithParameter." + parameter);
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario6.PublicVirtualInstanceMethodWithParameter." + parameter);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Scenarios_UT
 
             methodName = scenario.PublicVirtualInstanceMethod();
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario6.PublicVirtualInstanceMethod");
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario6.PublicVirtualInstanceMethod");
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace Scenarios_UT
 
             methodName = scenario.PublicVirtualInstanceMethodWithParameter(parameter);
 
-            Assert.IsTrue(methodName == "MethodRedirect.Scenario6.PublicVirtualInstanceMethodWithParameter." + parameter);
+            Assert.IsTrue(methodName == "Scenarios_UT.Scenario6.PublicVirtualInstanceMethodWithParameter." + parameter);
         }
 
         [TestMethod]
