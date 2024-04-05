@@ -9,11 +9,11 @@ namespace MethodRedirect
 {
     static class MethodUtil
     {
-        public static OriginalMethodsInfo HookMethod(IMethodsHook orig, IMethodsHook hook)
+        public static OriginalMethodsInfo HookMethod(MethodHook orig, MethodHook hook)
         {
             OriginalMethodsInfo origins = new OriginalMethodsInfo();
-            var origMethods = orig.GetMethods().ToArray();
-            var hookMethods = hook.GetMethods().ToArray();
+            var origMethods = orig.Methods;
+            var hookMethods = hook.Methods;
 
             for (int i = 0; i < Math.Min(origMethods.Length, hookMethods.Length); i++)
             { 

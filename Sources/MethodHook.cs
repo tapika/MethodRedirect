@@ -6,14 +6,16 @@ using System.Text;
 
 namespace MethodRedirect
 {
-    public class MethodHook : IMethodsHook
+    public class MethodHook
     {
-        Type Type { get; set; }
-        MethodInfo MethodInfo { get; set; }
-
-        private MethodHook(Type type, string methodName, bool isStatic = false)
+        MethodInfo[] _methods;
+        public MethodInfo[] Methods
         {
-            Type = type;
+            get { return _methods; }
+        }
+
+        private MethodHook(Type type, string name, bool isMethod, bool isStatic = false)
+        {
             BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public;
             if (isStatic)
             {
@@ -24,30 +26,39 @@ namespace MethodRedirect
                 flags |= BindingFlags.Instance;
             }
 
-            MethodInfo = type.GetMethod(methodName, flags);
+            if (isMethod)
+            {
+                _methods = new MethodInfo[] { type.GetMethod(name, flags) };
+            }
+            else
+            {
+                var propInfo = type.GetProperty(name, flags);
+                _methods = new MethodInfo[] { propInfo.GetGetMethod(true), propInfo.GetSetMethod(true) };
+            }
         }
 
-        private MethodHook()
+        private MethodHook(params MethodInfo[] methods )
         {
+            _methods = methods;
         }
 
-        static public MethodHook From<T>(Func<T> target)
+        static public MethodHook FromFunc<T>(Func<T> target)
         {
-            return new MethodHook() { MethodInfo = target.Method };
+            return new MethodHook(target.Method);
         }
-        static public MethodHook From<T, R>(Func<T, R> target)
+        static public MethodHook FromFunc<T, R>(Func<T, R> target)
         {
-            return new MethodHook() { MethodInfo = target.Method };
-        }
-
-        static public MethodHook From(Type type, string methodName, bool isStatic = false)
-        {
-            return new MethodHook(type, methodName, isStatic);
+            return new MethodHook(target.Method);
         }
 
-        public IEnumerable<MethodInfo> GetMethods()
+        static public MethodHook FromMethod(Type type, string methodName, bool isStatic = false)
         {
-            yield return MethodInfo;
+            return new MethodHook(type, methodName, true, isStatic);
+        }
+
+        static public MethodHook FromProperty(Type type, string methodName, bool isStatic = false)
+        {
+            return new MethodHook(type, methodName, false, isStatic);
         }
     }
 }

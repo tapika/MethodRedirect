@@ -15,8 +15,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario6);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.From(Scenario_Type, "PublicVirtualInstanceMethodWithParameter"),
-                MethodHook.From(typeof(Scenario6Ext), "PrivateInstanceMethodWithParameter")
+                MethodHook.FromMethod(Scenario_Type, "PublicVirtualInstanceMethodWithParameter"),
+                MethodHook.FromMethod(typeof(Scenario6Ext), "PrivateInstanceMethodWithParameter")
             );
 
             var scenario = (Scenario6)Activator.CreateInstance(Scenario_Type);
@@ -39,8 +39,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario6);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.From(Scenario_Type, "PublicVirtualInstanceMethod"),
-                MethodHook.From(() =>
+                MethodHook.FromMethod(Scenario_Type, "PublicVirtualInstanceMethod"),
+                MethodHook.FromFunc(() =>
                 {
                     return "MethodRedirect.LambdaExpression.NoParameter";
                 })
@@ -65,8 +65,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario6);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.From(Scenario_Type, "PublicVirtualInstanceMethodWithParameter"),
-                MethodHook.From((int x) =>
+                MethodHook.FromMethod(Scenario_Type, "PublicVirtualInstanceMethodWithParameter"),
+                MethodHook.FromFunc((int x) =>
                 {
                     return "MethodRedirect.LambdaExpression.WithParameter." + x;
                 })
@@ -92,8 +92,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario6);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.From(Scenario_Type, "AnotherPublicInstanceMethodWithParameter"),
-                MethodHook.From((int x) =>
+                MethodHook.FromMethod(Scenario_Type, "AnotherPublicInstanceMethodWithParameter"),
+                MethodHook.FromFunc((int x) =>
                 {
                     Debug.WriteLine("Lambda Expression Parameter = " + x.ToString());
                     return x + 10;

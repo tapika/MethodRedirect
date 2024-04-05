@@ -11,8 +11,8 @@ namespace MethodRedirect
             Type Scenario_Type = typeof(Scenario1);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.From(Scenario_Type, "InternalInstanceMethod"),
-                MethodHook.From(Scenario_Type, "PrivateInstanceMethod")
+                MethodHook.FromMethod(Scenario_Type, "InternalInstanceMethod"),
+                MethodHook.FromMethod(Scenario_Type, "PrivateInstanceMethod")
             );
 
             // Using "dynamic" type to resolve the following issue in x64 and Release (with code optimizations) builds.
