@@ -23,8 +23,8 @@ namespace Scenarios_UT
             FieldInfo ScenarioBase_PrivateMinimumFeeField = ScenarioBase_Type.GetField("_minimumFee", BindingFlags.Instance | BindingFlags.NonPublic);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.FromProperty(typeof(Scenario5Base), "MinimumFee"),
-                MethodHook.FromProperty(typeof(Scenario5), "CustomFee")
+                ClassMemberInfo.FromProperty(typeof(Scenario5Base), "MinimumFee"),
+                ClassMemberInfo.FromProperty(typeof(Scenario5), "CustomFee")
             );
 
             // Create instance of scenario

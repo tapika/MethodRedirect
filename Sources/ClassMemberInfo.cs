@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace MethodRedirect
 {
-    public class MethodHook
+    public class ClassMemberInfo
     {
         MethodInfo[] _methods;
         public MethodInfo[] Methods
@@ -14,7 +11,7 @@ namespace MethodRedirect
             get { return _methods; }
         }
 
-        private MethodHook(Type type, string name, bool isMethod, bool isStatic = false)
+        private ClassMemberInfo(Type type, string name, bool isMethod, bool isStatic = false)
         {
             BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public;
             if (isStatic)
@@ -37,28 +34,28 @@ namespace MethodRedirect
             }
         }
 
-        private MethodHook(params MethodInfo[] methods )
+        private ClassMemberInfo(params MethodInfo[] methods )
         {
             _methods = methods;
         }
 
-        static public MethodHook FromFunc<T>(Func<T> target)
+        static public ClassMemberInfo FromFunc<T>(Func<T> target)
         {
-            return new MethodHook(target.Method);
+            return new ClassMemberInfo(target.Method);
         }
-        static public MethodHook FromFunc<T, R>(Func<T, R> target)
+        static public ClassMemberInfo FromFunc<T, R>(Func<T, R> target)
         {
-            return new MethodHook(target.Method);
-        }
-
-        static public MethodHook FromMethod(Type type, string methodName, bool isStatic = false)
-        {
-            return new MethodHook(type, methodName, true, isStatic);
+            return new ClassMemberInfo(target.Method);
         }
 
-        static public MethodHook FromProperty(Type type, string methodName, bool isStatic = false)
+        static public ClassMemberInfo FromMethod(Type type, string methodName, bool isStatic = false)
         {
-            return new MethodHook(type, methodName, false, isStatic);
+            return new ClassMemberInfo(type, methodName, true, isStatic);
+        }
+
+        static public ClassMemberInfo FromProperty(Type type, string methodName, bool isStatic = false)
+        {
+            return new ClassMemberInfo(type, methodName, false, isStatic);
         }
     }
 }

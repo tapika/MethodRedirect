@@ -9,7 +9,7 @@ namespace MethodRedirect
 {
     static class MethodUtil
     {
-        public static OriginalMethodsInfo HookMethod(MethodHook orig, MethodHook hook)
+        public static OriginalMethodsInfo HookMethod(ClassMemberInfo orig, ClassMemberInfo hook)
         {
             OriginalMethodsInfo origins = new OriginalMethodsInfo();
             var origMethods = orig.Methods;

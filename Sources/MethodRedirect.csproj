@@ -88,7 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MethodHook.cs" />
+    <Compile Include="ClassMemberInfo.cs" />
     <Compile Include="OriginalMethodsInfo.cs" />
     <Compile Include="MethodToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

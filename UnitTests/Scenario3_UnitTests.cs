@@ -14,8 +14,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario3);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.FromMethod(Scenario_Type, "InternalVirtualInstanceMethod"),
-                MethodHook.FromMethod(typeof(Scenario3Ext), "InternalStaticMethod", true)
+                ClassMemberInfo.FromMethod(Scenario_Type, "InternalVirtualInstanceMethod"),
+                ClassMemberInfo.FromMethod(typeof(Scenario3Ext), "InternalStaticMethod", true)
             );
 
             var scenario = (Scenario3)Activator.CreateInstance(Scenario_Type);

@@ -14,8 +14,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario2);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.FromMethod(Scenario_Type, "InternalVirtualInstanceMethod"),
-                MethodHook.FromMethod(Scenario_Type, "PrivateInstanceMethod")
+                ClassMemberInfo.FromMethod(Scenario_Type, "InternalVirtualInstanceMethod"),
+                ClassMemberInfo.FromMethod(Scenario_Type, "PrivateInstanceMethod")
             );
 
             var scenario = (Scenario2)Activator.CreateInstance(Scenario_Type);

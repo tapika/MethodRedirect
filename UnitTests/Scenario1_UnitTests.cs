@@ -14,8 +14,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario1);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.FromMethod(Scenario_Type, "InternalInstanceMethod"),
-                MethodHook.FromMethod(Scenario_Type, "PrivateInstanceMethod")
+                ClassMemberInfo.FromMethod(Scenario_Type, "InternalInstanceMethod"),
+                ClassMemberInfo.FromMethod(Scenario_Type, "PrivateInstanceMethod")
             );
 
             // Using "dynamic" type to prevent caching the first call result and make the second assert fail
@@ -38,8 +38,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario1);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.FromMethod(Scenario_Type, "PublicInstanceMethod"),
-                MethodHook.FromMethod(Scenario_Type, "PrivateInstanceMethod")
+                ClassMemberInfo.FromMethod(Scenario_Type, "PublicInstanceMethod"),
+                ClassMemberInfo.FromMethod(Scenario_Type, "PrivateInstanceMethod")
             );
 
             // Using "dynamic" type to prevent caching the first call result and make the second assert fail
@@ -62,8 +62,8 @@ namespace Scenarios_UT
             Type Scenario_Type = typeof(Scenario1);
 
             var token = MethodUtil.HookMethod(
-                MethodHook.FromMethod(Scenario_Type, "PublicInstanceMethod"),
-                MethodHook.FromMethod(Scenario_Type, "PublicStaticMethod", true)
+                ClassMemberInfo.FromMethod(Scenario_Type, "PublicInstanceMethod"),
+                ClassMemberInfo.FromMethod(Scenario_Type, "PublicStaticMethod", true)
             );
 
             // Using "dynamic" type to prevent caching the first call result and make the second assert fail
