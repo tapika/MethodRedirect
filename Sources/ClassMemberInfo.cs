@@ -11,7 +11,7 @@ namespace MethodRedirect
             get { return _methods; }
         }
 
-        private ClassMemberInfo(Type type, string name, bool isMethod, bool isStatic = false)
+        private ClassMemberInfo(Type type, string name, bool isMethod, Type[] types = null, bool isStatic = false)
         {
             BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public;
             if (isStatic)
@@ -25,7 +25,14 @@ namespace MethodRedirect
 
             if (isMethod)
             {
-                _methods = new MethodInfo[] { type.GetMethod(name, flags) };
+                if (types != null)
+                {
+                    _methods = new MethodInfo[] { type.GetMethod(name, types) };
+                }
+                else
+                { 
+                    _methods = new MethodInfo[] { type.GetMethod(name, flags) };
+                }
             }
             else
             {
@@ -39,6 +46,11 @@ namespace MethodRedirect
             _methods = methods;
         }
 
+        static public ClassMemberInfo FromMethodInfo(MethodInfo mi)
+        {
+            return new ClassMemberInfo(mi);
+        }
+
         static public ClassMemberInfo FromFunc<T>(Func<T> target)
         {
             return new ClassMemberInfo(target.Method);
@@ -48,14 +60,19 @@ namespace MethodRedirect
             return new ClassMemberInfo(target.Method);
         }
 
+        static public ClassMemberInfo FromMethod(Type type, string methodName, Type[] types)
+        {
+            return new ClassMemberInfo(type, methodName, true, types);
+        }
+
         static public ClassMemberInfo FromMethod(Type type, string methodName, bool isStatic = false)
         {
-            return new ClassMemberInfo(type, methodName, true, isStatic);
+            return new ClassMemberInfo(type, methodName, true, null, isStatic);
         }
 
         static public ClassMemberInfo FromProperty(Type type, string methodName, bool isStatic = false)
         {
-            return new ClassMemberInfo(type, methodName, false, isStatic);
+            return new ClassMemberInfo(type, methodName, false, null, isStatic);
         }
     }
 }

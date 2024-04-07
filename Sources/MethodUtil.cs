@@ -9,6 +9,17 @@ namespace MethodRedirect
 {
     static class MethodUtil
     {
+        /// <summary>
+        /// Hooks method from <paramref name="origType"/>-type method name <paramref name="methodName"/>. Method arguments
+        /// must be identical to the one used in <paramref name="hook"/>
+        /// </summary>
+        public static OriginalMethodsInfo HookMethod(Type origType, string methodName, Delegate hook)
+        {
+            var invokeMeth = hook.GetType().GetMethod("Invoke");
+            var methodArgs = invokeMeth.GetParameters().Select(x => x.ParameterType).ToArray();
+            return HookMethod(ClassMemberInfo.FromMethod(origType, methodName, methodArgs), ClassMemberInfo.FromMethodInfo(hook.Method));
+        }
+
         public static OriginalMethodsInfo HookMethod(ClassMemberInfo orig, ClassMemberInfo hook)
         {
             OriginalMethodsInfo origins = new OriginalMethodsInfo();

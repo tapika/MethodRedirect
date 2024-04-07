@@ -92,6 +92,8 @@
     <Compile Include="Scenario5_UnitTests.cs" />
     <Compile Include="Scenario6.cs" />
     <Compile Include="Scenario6_UnitTests.cs" />
+    <Compile Include="Scenario7.cs" />
+    <Compile Include="Scenario7_UnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MSTest.TestAdapter">
