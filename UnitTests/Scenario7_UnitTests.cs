@@ -1,6 +1,7 @@
 ﻿using MethodRedirect;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Scenarios_UT
 {
@@ -46,5 +47,21 @@ namespace Scenarios_UT
             s7.MethodWithOutParam(out ret);
             Assert.AreEqual(ret, nameof(Scenario7.MethodWithOutParam));
         }
+
+        [TestMethod]
+        public void CanCallOriginalMethod()
+        {
+            Scenario7 s7 = new Scenario7();
+
+            Scenario7Ext.token = MethodUtil.HookMethod(
+                ClassMemberInfo.FromMethod(typeof(Scenario7), "M1"),
+                ClassMemberInfo.FromMethod(typeof(Scenario7Ext), "M1", true)
+            );
+
+            Assert.AreEqual(s7.M1(1,2), 13);
+        }
+
     }
+
 }
+

@@ -200,7 +200,7 @@ namespace MethodRedirect
 
         static void Redirect(OriginalMethodsInfo origins, IntPtr ori, IntPtr tar)
         {            
-            origins.AddOrigin(ori);
+            origins.AddOrigin(ori, tar);
             
             // Must create the token before address is assigned
             // Redirect origin method to target method            

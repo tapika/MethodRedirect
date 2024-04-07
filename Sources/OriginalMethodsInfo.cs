@@ -30,14 +30,30 @@ namespace MethodRedirect
             Origins.Clear();
         }
 
-        public void AddOrigin(IntPtr address)
+        public void AddOrigin(IntPtr address, IntPtr targetValue)
         {
-            Origins.Add(new MethodToken(address));
+            Origins.Add(new MethodToken(address, targetValue));
         }
 
         public override string ToString()
         {
             return Origins.First().ToString();
+        }
+
+        /// <summary>
+        /// Restores original method values so it can be called successfully without recursive crash, when disposing
+        /// return value - values will be patched to original values.
+        /// </summary>
+        public OriginalMethodsInfo RestoreOriginal()
+        {
+            OriginalMethodsInfo methodsInfo = new OriginalMethodsInfo();
+            foreach( MethodToken token in Origins)
+            {
+                token.Restore();
+                methodsInfo.Origins.Add(new MethodToken(token.Address, token.TargetValue));
+            }
+
+            return methodsInfo;
         }
     }
 }

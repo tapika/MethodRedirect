@@ -1,4 +1,6 @@
-﻿namespace Scenarios_UT
+﻿using MethodRedirect;
+
+namespace Scenarios_UT
 {
     public class Scenario7
     {
@@ -16,5 +18,33 @@
         {
             ret = nameof(MethodWithOutParam);
         }
+
+        public int delta2add = 5;
+        
+        public virtual int M1(int a1, int a2)
+        {
+            return a1 + a2 + delta2add;
+        }
+
     }
+
+    class Scenario7Ext
+    {
+        // can be only static, as M1 does not know context of Scenario7Ext class, as it can follow only original class (Scenario7)
+        public static OriginalMethodsInfo token = null;
+
+        static int M1(Scenario7 pthis, int a1, int a2)
+        {
+            // if you call pthis.M1 without token.RestoreOriginal() - you will get stack overflow as function just tries to 
+            // call itself infinitely.
+            using (token.RestoreOriginal())
+            {
+                pthis.delta2add = 0;    // Have access to original class being hooked.
+                int r = pthis.M1(a1, a2) + 10;
+                pthis.delta2add = 5;
+                return r;
+            }
+        }
+    }
+
 }
