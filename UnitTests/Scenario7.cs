@@ -26,6 +26,20 @@ namespace Scenarios_UT
             return a1 + a2 + delta2add;
         }
 
+        public virtual int Sum(int a1, int a2)
+        {
+            return a1 + a2;
+        }
+        public virtual string Sum(string s1, string s2)
+        {
+            return s1 + s2;
+        }
+
+        public virtual int Sub(int a1, int a2)
+        {
+            return a1 - a2;
+        }
+
     }
 
     class Scenario7Ext
@@ -45,6 +59,27 @@ namespace Scenarios_UT
                 return r;
             }
         }
+
+        public virtual int Sum(int a1, int a2)
+        {
+            return 0;
+        }
+
+        // can use object instead of original class in case if class is non-public.
+        public static string Sum(object scenario7, string s1, string s2)
+        {
+            return "";
+        }
+
+        public virtual int Sub(int a1, int a2)
+        {
+            return 0;
+        }
+        public virtual string Sub(string s1, string s2)
+        {
+            return "";
+        }
+
     }
 
 }

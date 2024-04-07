@@ -61,6 +61,26 @@ namespace Scenarios_UT
             Assert.AreEqual(s7.M1(1,2), 13);
         }
 
+        [TestMethod]
+        public void HookMultipleMethods()
+        {
+            // Can hook multiple methods with same name, only arguments overload.
+            var token = MethodUtil.HookMethod(typeof(Scenario7), typeof(Scenario7Ext), "Sum");
+            Scenario7 s7 = new Scenario7();
+            Assert.AreEqual(s7.Sum(1,2), 0);
+            Assert.AreEqual(s7.Sum("1","2"), "");
+            token.Dispose();
+            Assert.AreEqual(s7.Sum(1, 2), 3);
+            Assert.AreEqual(s7.Sum("1", "2"), "12");
+
+            // Hook type must have a complete list of methods that must be hooked.
+            // If method not found in original type, exception will be thrown.
+            var ex = Assert.ThrowsException<ArgumentException>(() => {
+                MethodUtil.HookMethod(typeof(Scenario7), typeof(Scenario7Ext), "Sub");
+            }, "yep");
+
+            Assert.AreEqual(ex.Message, "Hook method Sub(System.String,System.String) does not have mapping in original type");
+        }
     }
 
 }

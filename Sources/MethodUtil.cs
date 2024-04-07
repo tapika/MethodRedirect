@@ -20,6 +20,39 @@ namespace MethodRedirect
             return HookMethod(ClassMemberInfo.FromMethod(origType, methodName, methodArgs), ClassMemberInfo.FromMethodInfo(hook.Method));
         }
 
+        /// <summary>
+        /// Hooks method from <paramref name="origType"/>-type to <paramref name="hookType"/>-type with method names
+        /// <paramref name="methodName"/>. Methods argument types must match to each other.
+        /// </summary>
+        /// <exception cref="ArgumentException">If method cannot be found in origType.</exception>
+        public static OriginalMethodsInfo HookMethod(Type origType, Type hookType, string methodName)
+        {
+            OriginalMethodsInfo origins = new OriginalMethodsInfo();
+            var hookMethods = hookType.GetMethods(BindingFlags.Instance | 
+                BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).Where(x => x.Name == methodName);
+
+            foreach (var hookMethod in hookMethods)
+            {
+                var callTypes = hookMethod.GetParameters().Select(x => x.ParameterType).ToList();
+                if (hookMethod.IsStatic)
+                {
+                    callTypes.RemoveAt(0);
+                }
+
+                var origMethod = origType.GetMethod(methodName, callTypes.ToArray());
+                if (origMethod == null)
+                {
+                    string argTypes = String.Join(",", callTypes.Select(x => x.FullName));
+                    throw new ArgumentException($"Hook method {methodName}({argTypes}) does not have mapping in original type");
+                }
+
+                RedirectTo(origins, origMethod, hookMethod);
+            }
+
+            return origins;
+        }
+
+
         public static OriginalMethodsInfo HookMethod(ClassMemberInfo orig, ClassMemberInfo hook)
         {
             OriginalMethodsInfo origins = new OriginalMethodsInfo();
